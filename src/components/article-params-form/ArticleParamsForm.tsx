@@ -42,7 +42,9 @@ export const ArticleParamsForm = ({ pageState, setPageState }: TFormProps) => {
 	useOutsideClickClose({
 		isOpen,
 		rootRef,
-		onClose: () => console.log('dddd'),
+		onClose: (target) => {
+			!target.closest('ul') && setIsOpen(!isOpen);
+		},
 	});
 
 	return (
