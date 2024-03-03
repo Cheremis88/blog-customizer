@@ -1,6 +1,5 @@
 import { createRoot } from 'react-dom/client';
 import { StrictMode, CSSProperties, useState } from 'react';
-import clsx from 'clsx';
 
 import { Article } from './components/article/Article';
 import { ArticleParamsForm } from './components/article-params-form/ArticleParamsForm';
@@ -24,7 +23,7 @@ const App = () => {
 	};
 
 	return (
-		<div className={clsx(styles.main)} style={pageStyles as CSSProperties}>
+		<div className={styles.main} style={pageStyles as CSSProperties}>
 			<ArticleParamsForm pageState={pageState} setPageState={setPageState} />
 			<Article />
 		</div>

@@ -1,9 +1,10 @@
 import { ArrowButton } from 'components/arrow-button';
 import { Button } from 'components/button';
-import { useState, useRef } from 'react';
+import { useState, useRef, FormEvent } from 'react';
 import { Text } from '../text';
 import { Select } from '../select';
 import { RadioGroup } from '../radio-group';
+import { Separator } from '../separator';
 import clsx from 'clsx';
 import { useOutsideClickClose } from '../select/hooks/useOutsideClickClose';
 import {
@@ -27,7 +28,7 @@ export const ArticleParamsForm = ({ pageState, setPageState }: TFormProps) => {
 	const [formState, setFormState] = useState(pageState);
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
-	function changeStyles(evt: React.MouseEvent) {
+	function changeStyles(evt: FormEvent) {
 		evt.preventDefault();
 		setPageState(formState);
 	}
@@ -60,7 +61,10 @@ export const ArticleParamsForm = ({ pageState, setPageState }: TFormProps) => {
 			<aside
 				ref={rootRef}
 				className={clsx(styles.container, isOpen && styles.container_open)}>
-				<form className={styles.form}>
+				<form
+					className={styles.form}
+					onReset={resetStyles}
+					onSubmit={changeStyles}>
 					<Text as={'h2'} size={31} weight={800} uppercase>
 						Задайте параметры
 					</Text>
@@ -88,6 +92,9 @@ export const ArticleParamsForm = ({ pageState, setPageState }: TFormProps) => {
 						onChange={(value) =>
 							setFormState({ ...formState, fontColor: value })
 						}></Select>
+
+					<Separator />
+
 					<Select
 						selected={formState.backgroundColor}
 						options={backgroundColors}
@@ -104,8 +111,8 @@ export const ArticleParamsForm = ({ pageState, setPageState }: TFormProps) => {
 						}></Select>
 
 					<div className={styles.bottomContainer}>
-						<Button title='Сбросить' type='reset' onClick={resetStyles} />
-						<Button title='Применить' type='submit' onClick={changeStyles} />
+						<Button title='Сбросить' type='reset' />
+						<Button title='Применить' type='submit' />
 					</div>
 				</form>
 			</aside>
