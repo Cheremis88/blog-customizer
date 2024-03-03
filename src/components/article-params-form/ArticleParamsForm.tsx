@@ -44,7 +44,7 @@ export const ArticleParamsForm = ({ pageState, setPageState }: TFormProps) => {
 		isOpen,
 		rootRef,
 		onClose: (target) => {
-			!target.closest('ul') && setIsOpen(!isOpen);
+			!target.closest('ul') && setIsOpen((prevState) => !prevState);
 		},
 	});
 
@@ -53,7 +53,7 @@ export const ArticleParamsForm = ({ pageState, setPageState }: TFormProps) => {
 			<ArrowButton
 				onClick={(evt) => {
 					evt.stopPropagation();
-					setIsOpen(!isOpen);
+					setIsOpen((prevState) => !prevState);
 				}}
 				isOpen={isOpen}
 			/>
