@@ -13,22 +13,19 @@ const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
 
 const App = () => {
-	const defaultState = {
-		'--font-family': defaultArticleState.fontFamilyOption.value,
-		'--font-size': defaultArticleState.fontSizeOption.value,
-		'--font-color': defaultArticleState.fontColor.value,
-		'--container-width': defaultArticleState.contentWidth.value,
-		'--bg-color': defaultArticleState.backgroundColor.value,
-	};
-	const [state, setState] = useState(defaultState);
+	const [pageState, setPageState] = useState(defaultArticleState);
 
-	function resetStyles() {
-		setState(defaultState);
-	}
+	const pageStyles = {
+		'--font-family': pageState.fontFamilyOption.value,
+		'--font-size': pageState.fontSizeOption.value,
+		'--font-color': pageState.fontColor.value,
+		'--container-width': pageState.contentWidth.value,
+		'--bg-color': pageState.backgroundColor.value,
+	};
 
 	return (
-		<div className={clsx(styles.main)} style={state as CSSProperties}>
-			<ArticleParamsForm change={setState} reset={resetStyles} />
+		<div className={clsx(styles.main)} style={pageStyles as CSSProperties}>
+			<ArticleParamsForm pageState={pageState} setPageState={setPageState} />
 			<Article />
 		</div>
 	);

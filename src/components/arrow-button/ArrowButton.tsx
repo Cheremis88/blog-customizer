@@ -5,12 +5,12 @@ import { MouseEvent } from 'react';
 
 /** Функция для обработки открытия/закрытия формы */
 export type OnClick = (evt: MouseEvent) => void;
-type ff = {
+type TArrowProps = {
 	onClick: OnClick;
 	isOpen: boolean;
 };
 
-export const ArrowButton = ({ onClick, isOpen }: ff) => {
+export const ArrowButton = ({ onClick, isOpen }: TArrowProps) => {
 	return (
 		/* Не забываем указаывать role и aria-label атрибуты для интерактивных элементов */
 		<div
